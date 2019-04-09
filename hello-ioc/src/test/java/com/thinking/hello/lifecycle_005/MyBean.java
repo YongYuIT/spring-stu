@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
-public class MyBean  implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
+public class MyBean implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         System.out.println("--------------------------------------------setBeanFactory");
@@ -39,12 +39,12 @@ public class MyBean  implements BeanNameAware, BeanFactoryAware, ApplicationCont
     //===========================================================
 
     @PostConstruct
-    public void myInit(){
+    public void myInit() {
         System.out.println("--------------------------------------------myInit");
     }
 
     @PreDestroy
-    public void myDestroy(){
+    public void myDestroy() {
         System.out.println("--------------------------------------------myDestroy");
     }
 }
