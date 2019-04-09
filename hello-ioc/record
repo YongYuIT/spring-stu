@@ -23,3 +23,11 @@ AnnotationConfigApplicationContext是一个典型的基于注解的IoC容器。S
 在注解的描述方式下，我们可以使用@Bean注解将一个个bean注入到IoC容器中，但是这种方式比较麻烦。Spring允许使用扫描的方式注入。
 通过扫描的方式注入bean需要使用@Component和@ComponentScan注解
 
+6、@Component、@Value、@ComponentScan
+@Component表明这个类需要被注入容器
+@Value为注入容器的对象赋初值
+@ComponentScan用于指定IoC容器扫描范围，即只扫描@ComponentScan标注的类当前所在包及其子包，如
+
+ApplicationContext context=new AnnotationConfigApplicationContext(AppConfig.class);
+context是一个IoC容器，他使用的配置文件是AppConfig类，所以AppConfig类必须标注@Configuration
+而同时AppConfig类标注@ComponentScan，意味着context将会扫描AppConfig当前包及其子包，把所有标注@Component的类的对象注入容器
