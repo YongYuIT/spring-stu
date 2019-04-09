@@ -1,0 +1,25 @@
+1、什么是IoC
+IoC是一种通过描述来生成或者获取对象的技术。在常规的java中，生成对象通常使用new关键字，而spring则是通过描述来生成对象的。
+Spring把每一个需要管理的对象称为Spring bean，管理这些Bean的容器被称为Spring IoC容器。
+
+2、IoC容器需实现如下两个基本功能：
+通过描述来管理Bean，包括发布和获取
+通过描述完成Bean之间的依赖关系
+
+Spring里的描述方式包括注解、java描述文件（@Configuration）、XML三种方式。Spring Boot一般采用注解的方式。
+
+3、所有Spring IoC容器必须实现org.springframework.beans.factory.BeanFactor接口，它是一切Spring IoC容器的根接口
+这个根容器接口里面最重要的方法就是getBean
+由于这个根容器接口太抽象，不太好用。所以Spring提供了一个更加高级的容器接口ApplicationContext
+ApplicationContext是Spring里面最常用最重要的容器接口，大部分Spring IoC容器是ApplicationContext的实现类。
+AnnotationConfigApplicationContext是一个典型的基于注解的IoC容器。Spring Boot里面的IoC容器也都是基于注解的
+
+4、关于@Configuration
+@Configuration代表这是一个供IoC容器使用的配置文件。这个配置文件向IoC容器描述了如何装配相应的bean
+@Bean描述了创建方法与bean类型的对应关系
+
+5、通过扫描装配Bean
+虽然Spring支持使用java描述文件（@Configuration）和XML方式向IoC容器提供描述，但是Spring boot通常采用注解的方式向IoC容器提供描述
+在注解的描述方式下，我们可以使用@Bean注解将一个个bean注入到IoC容器中，但是这种方式比较麻烦。Spring允许使用扫描的方式注入。
+通过扫描的方式注入bean需要使用@Component和@ComponentScan注解
+
