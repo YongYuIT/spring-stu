@@ -1,4 +1,4 @@
-package com.thinking.hello.component_002;
+package com.thinking.hello.Component_002;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

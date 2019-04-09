@@ -1,4 +1,4 @@
-package com.thinking.hello.component_002;
+package com.thinking.hello.Component_002;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

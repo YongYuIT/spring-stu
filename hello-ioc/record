@@ -33,4 +33,8 @@ context是一个IoC容器，他使用的配置文件是AppConfig类，所以AppC
 而同时AppConfig类标注@ComponentScan，意味着context将会扫描AppConfig当前包及其子包，把所有标注@Component的类的对象注入容器
 
 @ComponentScan默认的扫描范围是标注的类当前所在包及其子包，但是也可以在其上实现复杂的自定义扫描逻辑，这里就不再展开
-很显然，由于@ComponentScan要配合@Component使用，对于那些没有标注@Component的外部java资源如何注入呢？还是使用@Bean！（例见com.thinking.hello.mixed_003.Client的注入）
+很显然，由于@ComponentScan要配合@Component使用，对于那些没有标注@Component的外部java资源（实际上也无法标注）如何注入呢？还是使用@Bean！（例见com.thinking.hello.mixed_003.Client的注入）
+
+7、关于@Autowired
+在IoC容器扫描范围内的@Autowired变量（可以是属性也可以是方法形参），IoC容器将会按照type匹配的规则为其赋值。
+如果类型匹配出现了多匹配的现象（歧义），可通过特殊化变量命名、@Primmary定义匹配优先级、@Qualifier指定匹配规则的方式消除。
