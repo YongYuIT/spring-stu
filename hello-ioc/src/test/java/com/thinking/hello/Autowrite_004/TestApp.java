@@ -1,4 +1,4 @@
-package com.thinking.hello.Autowrite;
+package com.thinking.hello.Autowrite_004;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

@@ -1,4 +1,4 @@
-package com.thinking.hello.Autowrite;
+package com.thinking.hello.Autowrite_004;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
