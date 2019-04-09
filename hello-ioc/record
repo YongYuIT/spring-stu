@@ -38,3 +38,7 @@ context是一个IoC容器，他使用的配置文件是AppConfig类，所以AppC
 7、关于@Autowired
 在IoC容器扫描范围内的@Autowired变量（可以是属性也可以是方法形参），IoC容器将会按照type匹配的规则为其赋值。
 如果类型匹配出现了多匹配的现象（歧义），可通过特殊化变量命名、@Primmary定义匹配优先级、@Qualifier指定匹配规则的方式消除。
+
+8、关于被注入到IoC容器的bean，其生命周期见com.thinking.hello.lifecycle_005测试结果。这里需要注意两点
+  a、可以通过@PostConstruct和@PreDestroy插入bean的自定义创建和销毁动作
+  b、在IoC容器配置文件里（即@Configuration文件）可以通过对@ComponentScan lazyInit的设置来控制是否立即创建Bean。默认是false，即扫描到bean的信息之后立即创建bean。
