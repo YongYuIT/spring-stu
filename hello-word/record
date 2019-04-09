@@ -1,0 +1,30 @@
+0\ spring boot 遵循的规范
+
+0.1: 注解还是xml？
+业务类（MVC，Service之类的）当使用注解；公用Bean（数据库bean，第三方访问资源等）使用xml
+0.2: 约定优于配置
+
+1\ how to init a spring boot proj?
+
+step1: choose "spring initializr" at "New Project" page.
+step2: choose "core" when adding "dependencies". since "lombok" is a very useful plugins add it by the way.
+
+note: if proj already exists( I mean created by this way), we need to choose import as maven proj.
+note: lombok使用需要如下3个关键步骤：
+    安装lombok插件
+    添加lombok的maven依赖
+    启用lombok插件，具体步骤为：setting搜索Annotation Processors，勾选Enable annotation processing
+
+2\ 基于JPA实现的ORM
+
+需要注意@Repository，@Entity，@Id，@GeneratedValue，@Column的用法
+其中@Repository是Spring通用的注解，定义了通用的增删查改的接口
+@Entity，@Id，@GeneratedValue，@Column是JPA的内容，用法示例见User类
+
+3\ @Autowired用法
+
+后面跟着IoC一起总结
+
+4\ @RestController的用法
+
+后面跟着Spring MVC一起总结
