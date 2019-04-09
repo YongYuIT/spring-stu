@@ -9,7 +9,7 @@ public class AppConfig {
     public  User createFuckUser(){
         User user=new User();
         user.setId(1L);
-        user.setNote("aaa");
+        user.setNote("aaaaaaaa");
         user.setUserName("name_111");
         return user;
     }

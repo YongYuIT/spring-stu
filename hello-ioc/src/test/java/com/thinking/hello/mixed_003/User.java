@@ -1,15 +1,17 @@
-package com.thinking.hello.AnnotationConfigApplicationContext_001;
+package com.thinking.hello.mixed_003;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 @Data
+@Component("my_test_user")
 public class User {
-    @Value("2")
+    @Value("6")
     private Long id;
-    @Value("name_22222")
+    @Value("name_666666")
     private String userName;
-    @Value("bbbbbb")
+    @Value("ffffff")
     private String note;
 
 }

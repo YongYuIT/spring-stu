@@ -11,6 +11,6 @@ public class TestApp {
         User user1=context.getBean(User.class);
         User user2=(User)context.getBean("my_test_user");
         System.out.println("user1-->"+user1.getUserName());
-        System.out.println("user2-->"+user1.getUserName());
+        System.out.println("user2-->"+user2.getUserName());
     }
 }

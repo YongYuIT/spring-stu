@@ -1,4 +1,4 @@
-package com.thinking.hello.component_002;
+package com.thinking.hello.mixed_003;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -9,8 +9,8 @@ public class TestApp {
     public void test(){
         ApplicationContext context=new AnnotationConfigApplicationContext(AppConfig.class);
         User user1=context.getBean(User.class);
-        User user2=(User)context.getBean("my_test_user");
+        Client client1=(Client)context.getBean(Client.class);
         System.out.println("user1-->"+user1.getUserName());
-        System.out.println("user2-->"+user2.getUserName());
+        System.out.println("client1-->"+client1.getClientName());
     }
 }

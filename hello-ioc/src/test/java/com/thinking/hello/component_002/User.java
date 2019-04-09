@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 @Data
 @Component("my_test_user")
 public class User {
-    @Value("1")
+    @Value("3")
     private Long id;
-    @Value("name_222")
+    @Value("name_33333")
     private String userName;
-    @Value("aaa")
+    @Value("cccccc")
     private String note;
 
 }
