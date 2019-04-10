@@ -1,0 +1,37 @@
+1\ 什么是MVC
+
+    a、Controller    请求最先到达控制器。控制器的作用就是请求分发
+    b、Model         请求内容被控制器分发到模型层之后，模型层负责一切数据处理相关的工作
+                     模型层一般比较复杂，特别是涉及到数据库事物机制。所以又细分成服务层（Service）+数据访问层（DAO）
+    c、View          从Model曾获取最终需要展现的数据，并渲染UI。
+
+2\ 领域模型中的实体类细分：VO，DTO，DO，PO
+
+VO：View Obj，视图对象，用于View层，作用是把某个制定的页面（或组件）里面的所有数据封装起来
+    例如，在一个用户个人信息展示界面，需要有
+    用户名
+    性别
+    生日
+    用户级别...
+    这些属性集就构成一个用户的VO
+DTO：Data Transfer Obj，数据传输对象，View层和Service层之间传输的对象
+DO：Domain Obj，领域对象，就是从现实世界中抽象出来的业务实体
+PO：Persistent Obj，持久化对象，通常与数据库表结构一一对应
+
+3\ API Only
+
+如果仅需要开发API类型的web应用，通常不需要View层，直接从Controller返回结果就行。此时有两个选项：
+
+a、在控制器类上使用@RestController注解，这样控制器返回结果会直接转为Json格式向浏览器返回
+或者
+b、在控制器方法上使用@ResponseBody注解，这样也可以达到相同效果
+
+4\请求参数获取    主要依靠两个注解：@RequestParam和@RequestBody
+
+如果请求是规范的Json格式，例如application/json类型的请求，可直接使用@RequestBody注解的类来接收。
+但是要注意，json请求的键需要与接收类的属性一一对应，json请求的值需要与接受类的属性数据类型兼容。
+@RequestBody通常用于接受post参数
+
+如果是普通的kv集合类型的请求参数（无论get还是post）可以使用@RequestParam来接收
+@RequestParam支持指定参数是否必填（value，required），设置默认值（defaultValue）等
+
