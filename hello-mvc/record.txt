@@ -34,4 +34,5 @@ b、在控制器方法上使用@ResponseBody注解，这样也可以达到相同
 
 如果是普通的kv集合类型的请求参数（无论get还是post）可以使用@RequestParam来接收
 @RequestParam支持指定参数是否必填（value，required），设置默认值（defaultValue）等
+@RequestParam請求通常放在Body-->form data裡面
 
