@@ -1,0 +1,26 @@
+1\ 如何使用mybites-generator
+step1:利用Spring Initializr创建项目，在new proj--> dependencies页选择SQL-->Mybatis
+
+由于mybatis-generator没有IDEA插件，但是有Maven插件所以，
+step2:向pom.xml文件中添加mybatis-generator Maven插件
+    <build>
+        <plugins>
+            .......
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.7</version>
+            </plugin>
+            ........
+        </plugins>
+    </build>
+最新的maven配置可以在https://mvnrepository.com里通过检索得到
+然后点开IDEA右侧Maven-->Plugins，刷新，即可见mybatis-generator插件
+
+step3:编写src/main/resources/generatorConfig.xml文件，这个文件是mybatis-generator插件默认的配置文件
+如果"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"报红，在setting里搜索dtds找到Schemas and DTDs，添加忽略
+这个文件的编写可参见官网：http://www.mybatis.org/generator/configreference/xmlconfig.html
+也可部分参考https://blog.csdn.net/noaman_wgs/article/details/54409301
+
+step4: 利用mybatis-generator插件生成model，mapper及其xml
+
