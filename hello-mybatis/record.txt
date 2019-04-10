@@ -24,3 +24,21 @@ step3:编写src/main/resources/generatorConfig.xml文件，这个文件是mybati
 
 step4: 利用mybatis-generator插件生成model，mapper及其xml
 
+异常：Field mapper in com.thinking.hellomybatis.controller.UserController required a bean of type 'com.thinking.hellomybatis.mapper.UserMapper' that could not be found.
+需要添加扫描@MapperScan
+也可以在application.properties配置
+
+异常：Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+需要在application.properties中配置数据源
+
+异常：Cannot load driver class: com.mysql.cj.jdbc.Driver
+添加依赖
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.15</version>
+        </dependency>
+
+异常：The server time zone value 'PDT' is unrecognized or represents more than one time zone
+在连接字符串里加入时区信息
+jdbc:mysql://localhost:3306/yong?serverTimezone=UTC
