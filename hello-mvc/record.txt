@@ -36,3 +36,7 @@ b、在控制器方法上使用@ResponseBody注解，这样也可以达到相同
 @RequestParam支持指定参数是否必填（value，required），设置默认值（defaultValue）等
 @RequestParam請求通常放在Body-->form data裡面
 
+5\ 关于请求参数的转换/验证
+
+
+
