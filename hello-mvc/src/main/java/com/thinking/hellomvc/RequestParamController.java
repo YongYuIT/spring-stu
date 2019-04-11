@@ -1,6 +1,5 @@
 package com.thinking.hellomvc;
 
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +30,8 @@ public class RequestParamController {
 
     @PostMapping("test-conv")
     @ResponseBody
-    public Object testConv(@RequestParam JSONObject jsonObj) {
-        jsonObj.put("des", "hello");
-        return jsonObj;
+    public UserDTO testConv(@RequestParam UserDTO UserDTO) {
+        return UserDTO;
     }
 
 }

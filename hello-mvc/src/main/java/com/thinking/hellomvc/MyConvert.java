@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 import java.util.Base64;
 
 @Component
-public class MyConvert implements Converter<String,JSONObject> {
+public class MyConvert implements Converter<String,UserDTO> {
 
     @Override
-    public JSONObject convert(String basse64Str) {
-        String str= new String(Base64.getDecoder().decode(basse64Str));
-        return JSONObject.parseObject(str);
+    public UserDTO convert(String base64Str) {
+        String userStr= new String(Base64.getDecoder().decode(base64Str));
+        return JSONObject.parseObject(userStr,UserDTO.class);
     }
 }
