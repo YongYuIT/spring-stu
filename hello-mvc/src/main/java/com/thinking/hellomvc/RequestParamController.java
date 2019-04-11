@@ -1,17 +1,21 @@
 package com.thinking.hellomvc;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/requestparam")
 public class RequestParamController {
+
+    @InitBinder
+    public void FuckInit(WebDataBinder binder) {
+        binder.setValidator(new MyValidator());
+    }
 
     @PostMapping("/test")
     @ResponseBody
@@ -30,7 +34,7 @@ public class RequestParamController {
 
     @PostMapping("test-conv")
     @ResponseBody
-    public UserDTO testConv(@RequestParam UserDTO UserDTO) {
+    public UserDTO testConv(@Valid @RequestParam UserDTO UserDTO) {
         return UserDTO;
     }
 

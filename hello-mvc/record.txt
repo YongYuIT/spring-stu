@@ -38,5 +38,12 @@ b、在控制器方法上使用@ResponseBody注解，这样也可以达到相同
 
 5\ 关于请求参数的转换/验证
 
+自定义参数转换器，例见com.thinking.hellomvc.MyConvert。需要注意的两点是：
+自定义转换器只能由于转换自定义POJO（扁平java对象）；自定义转换器在只需要标注为@Component使其能注入Spring Boot IoC容器即可。至于匹配调用转换器，框架会根据类型匹配规则自动实现。
+
+关于验证器，简单的可以用JSR-303注解验证。主要包括：@NotNull，@Future，@DateTimeFormat...
+复杂的可自定义验证器，例见com.thinking.hellomvc.MyValidator。实现并启用一个验证器分两步：实现Validator接口，使用@InitBinder注解，使用@Valid註解
+
+
 
 
