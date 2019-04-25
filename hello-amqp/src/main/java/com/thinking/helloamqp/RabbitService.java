@@ -19,17 +19,17 @@ public class RabbitService {
     private RabbitTemplate rabbitTemplate;
 
     public void sendMsg(String msg) {
-        rabbitTemplate.setConfirmCallback(MsgRabbitListener);
+        rabbitTemplate.setConfirmCallback(RabbitListener);
         rabbitTemplate.convertAndSend(msgQueueName, msg);
     }
 
     public void sendUser(User user) {
-        rabbitTemplate.setConfirmCallback(UserRabbitListener);
+        rabbitTemplate.setConfirmCallback(RabbitListener);
         rabbitTemplate.convertAndSend(userQueueName, user);
     }
 
 
-    private RabbitTemplate.ConfirmCallback MsgRabbitListener = new RabbitTemplate.ConfirmCallback() {
+    private RabbitTemplate.ConfirmCallback RabbitListener = new RabbitTemplate.ConfirmCallback() {
         @Override
         public void confirm(CorrelationData correlationData, boolean b, String s) {
             if (b) {
@@ -38,17 +38,6 @@ public class RabbitService {
                 System.out.println("MsgRabbitListener------------------消息消费失败-->" + s);
             }
 
-        }
-    };
-
-    private RabbitTemplate.ConfirmCallback UserRabbitListener = new RabbitTemplate.ConfirmCallback() {
-        @Override
-        public void confirm(CorrelationData correlationData, boolean b, String s) {
-            if (b) {
-                System.out.println("UserRabbitListener------------------消息被成功消费");
-            } else {
-                System.out.println("UserRabbitListener------------------消息消费失败-->" + s);
-            }
         }
     };
 }
