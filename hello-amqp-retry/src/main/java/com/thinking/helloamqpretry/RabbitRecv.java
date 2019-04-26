@@ -15,7 +15,8 @@ public class RabbitRecv {
     @RabbitListener(queues = "${rabbitmq.queue.msg}")
     public void recMsg(Message msg, Channel channel) throws IOException {
         System.out.println("-----------------recMsg-->" + new String(msg.getBody()));
-        channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false, false);
+        //由于绑定了死信队列，所以消费端回绝消息的时候，消息会进入死信队列
+        channel.basicReject(msg.getMessageProperties().getDeliveryTag(), false);
     }
 
     @RabbitListener(queues = "${rabbitmq.queue.user}")
@@ -24,6 +25,7 @@ public class RabbitRecv {
         ObjectInputStream ois = new ObjectInputStream(bais);
         User user = (User) ois.readObject();
         System.out.println("-----------------recMsg-->" + JSON.toJSONString(user));
-        channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false, false);
+        //没有绑定死信队列
+        channel.basicReject(msg.getMessageProperties().getDeliveryTag(), false);
     }
 }
