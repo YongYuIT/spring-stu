@@ -15,7 +15,7 @@ public class RabbitRecv {
     @RabbitListener(queues = "${rabbitmq.queue.msg}")
     public void recMsg(Message msg, Channel channel) throws IOException {
         System.out.println("-----------------recMsg-->" + new String(msg.getBody()));
-        channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false, true);
+        channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false, false);
     }
 
     @RabbitListener(queues = "${rabbitmq.queue.user}")
@@ -24,6 +24,6 @@ public class RabbitRecv {
         ObjectInputStream ois = new ObjectInputStream(bais);
         User user = (User) ois.readObject();
         System.out.println("-----------------recMsg-->" + JSON.toJSONString(user));
-        channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false, true);
+        channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false, false);
     }
 }
