@@ -1,0 +1,4 @@
+出現錯誤 Channel shutdown: channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no exchange 'exchange' in vhost '/', class-id=60, method-id=40)
+
+解決
+http://0.0.0.0:15672-->Exchange 新建一个即可
