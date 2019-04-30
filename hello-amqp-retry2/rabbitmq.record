@@ -1,0 +1,24 @@
+$ sudo apt-get install erlang
+$ sudo apt-get install rabbitmq-server
+$ ls /usr/lib/rabbitmq
+$ sudo rabbitmqctl status
+$ sudo rabbitmqctl start_app
+$ sudo rabbitmqctl stop_app
+
+$ cd /usr/lib/rabbitmq/lib/rabbitmq_server-3.6.10/plugins/
+$ sudo rabbitmq-plugins enable rabbitmq_management
+$ sudo rabbitmqctl add_user admin admin
+$ sudo rabbitmqctl set_user_tags admin administrator
+
+####http://0.0.0.0:15672
+
+连接错误如下：
+
+2019-04-24 18:36:38.746 ERROR 3945 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.amqp.AmqpIOException: java.io.IOException] with root cause
+
+com.rabbitmq.client.ShutdownSignalException: connection error; protocol method: #method<connection.close>(reply-code=530, reply-text=NOT_ALLOWED - access to vhost '/' refused for user 'admin', class-id=10, method-id=40)
+
+解决：
+
+http://0.0.0.0:15672-->admin
+查看Can access virtual hosts，授权即可
