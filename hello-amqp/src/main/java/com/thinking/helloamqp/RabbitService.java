@@ -33,9 +33,9 @@ public class RabbitService {
         @Override
         public void confirm(CorrelationData correlationData, boolean b, String s) {
             if (b) {
-                System.out.println("MsgRabbitListener------------------消息被成功消费");
+                System.out.println("MsgRabbitListener------------------消息被RabbitMQ正常接收");
             } else {
-                System.out.println("MsgRabbitListener------------------消息消费失败-->" + s);
+                System.out.println("MsgRabbitListener------------------RabbitMQ消息接收异常-->" + s);
             }
 
         }
