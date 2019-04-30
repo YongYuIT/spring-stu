@@ -64,4 +64,5 @@ public class RabbitConfig {
         retryTemplate.setRetryPolicy(retryPolicy);
         return retryTemplate;
     }
+
 }
