@@ -1,10 +1,11 @@
 package com.thinking.helloamqp;
 
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.retry.RejectAndDontRequeueRecoverer;
+import org.springframework.amqp.rabbit.retry.MessageRecoverer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.retry.support.RetryTemplate;
@@ -35,7 +36,19 @@ public class RabbitService {
         rabbitTemplate.setConfirmCallback(RabbitListener);
         factory.setAdviceChain(RetryInterceptorBuilder
                 .stateless()
-                .recoverer(new RejectAndDontRequeueRecoverer())
+                .recoverer(new MessageRecoverer() {
+                    @Override
+                    public void recover(Message message, Throwable cause) {
+                        System.out.println("-----------------cannot handler this error-->" + cause.getCause().getClass().getName());
+                        RabbitRecv.MyExp exp = (RabbitRecv.MyExp) cause.getCause();
+                        //由于绑定了死信队列，所以消费端回绝消息的时候，消息会进入死信队列
+                        try {
+                            exp.channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
+                        } catch (Throwable e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                })
                 .retryOperations(retryTemplate)
                 .build());
     }

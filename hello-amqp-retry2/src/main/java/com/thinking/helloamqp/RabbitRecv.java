@@ -15,7 +15,6 @@ public class RabbitRecv {
         System.out.println("-----------------recMsg-->" + new String(msg.getBody()));
         MyExp exp = new MyExp("fuck you");
         exp.channel = channel;
-        exp.msg = msg;
         throw exp;
     }
 
@@ -30,6 +29,5 @@ public class RabbitRecv {
         }
 
         public Channel channel;
-        public Message msg;
     }
 }

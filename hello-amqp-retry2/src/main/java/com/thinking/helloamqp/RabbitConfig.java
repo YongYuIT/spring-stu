@@ -63,15 +63,7 @@ public class RabbitConfig {
 
             @Override
             public <T, E extends Throwable> void close(RetryContext retryContext, RetryCallback<T, E> retryCallback, Throwable throwable) {
-                //在这里进行重試失敗的後續處理
                 System.out.println("----------------结束重试-->" + throwable.getCause().getClass().getName());
-                RabbitRecv.MyExp exp = (RabbitRecv.MyExp) throwable.getCause();
-                //由于绑定了死信队列，所以消费端回绝消息的时候，消息会进入死信队列
-                try {
-                    exp.channel.basicReject(exp.msg.getMessageProperties().getDeliveryTag(), false);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
 
             @Override
