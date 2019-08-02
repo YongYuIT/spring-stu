@@ -6,24 +6,24 @@ import org.springframework.kafka.support.ProducerListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MyProducerListener implements ProducerListener {
+public class MyProducerListener implements ProducerListener<String, String> {
     @Override
-    public void onSuccess(ProducerRecord producerRecord, RecordMetadata recordMetadata) {
+    public void onSuccess(ProducerRecord<String, String> producerRecord, RecordMetadata recordMetadata) {
         System.out.println("onSuccess");
     }
 
     @Override
-    public void onSuccess(String topic, Integer partition, Object key, Object value, RecordMetadata recordMetadata) {
+    public void onSuccess(String topic, Integer partition, String key, String value, RecordMetadata recordMetadata) {
         System.out.println("onSuccess-->" + topic);
     }
 
     @Override
-    public void onError(ProducerRecord producerRecord, Exception exception) {
+    public void onError(ProducerRecord<String, String> producerRecord, Exception exception) {
         System.out.println("onError");
     }
 
     @Override
-    public void onError(String topic, Integer partition, Object key, Object value, Exception exception) {
+    public void onError(String topic, Integer partition, String key, String value, Exception exception) {
         System.out.println("onError" + topic);
     }
 }
