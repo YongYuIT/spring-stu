@@ -1,0 +1,22 @@
+version: '2'
+
+networks:
+  thinking:
+
+services:
+  hello-kafka-produce.thinking.com:
+    image: ubuntu
+    container_name: hello-kafka-produce.thinking.com
+    command: sh /spring-cmd/spring.sh
+    tty: true
+    networks:
+      - thinking
+    ports:
+      - "8080:8080"
+    volumes:
+      - /mnt/hgfs/java-env/jdk1.8.0_211:/java
+      - /home/yong/spring-stu/hello-kafka-produce/src/main/resources/build-env/spring-cmd:/spring-cmd
+      - /home/yong/spring-stu/hello-kafka-produce/target:/spring-proj
+      - /home/yong/spring-stu/hello-kafka-produce/logs:/spring-logs
+    environment:
+      - JAVA_HOME=/java
