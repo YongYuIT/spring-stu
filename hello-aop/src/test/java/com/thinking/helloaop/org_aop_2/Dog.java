@@ -1,8 +1,5 @@
-package com.thinking.helloaop.spring_aop;
+package com.thinking.helloaop.org_aop_2;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Dog implements Animal {
     @Override
     public String sayName(String name) {

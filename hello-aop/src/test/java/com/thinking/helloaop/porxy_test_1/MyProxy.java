@@ -1,4 +1,4 @@
-package com.thinking.helloaop.porxy_test;
+package com.thinking.helloaop.porxy_test_1;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -1,4 +1,4 @@
-package com.thinking.helloaop.org_aop;
+package com.thinking.helloaop.org_aop_2;
 
 import java.lang.reflect.InvocationTargetException;
 

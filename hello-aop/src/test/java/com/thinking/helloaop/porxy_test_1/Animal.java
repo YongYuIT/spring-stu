@@ -1,4 +1,4 @@
-package com.thinking.helloaop.porxy_test;
+package com.thinking.helloaop.porxy_test_1;
 
 public interface Animal {
     default void setTips(String tips) {

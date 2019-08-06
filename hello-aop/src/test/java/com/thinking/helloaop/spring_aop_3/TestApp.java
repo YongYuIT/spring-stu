@@ -1,4 +1,4 @@
-package com.thinking.helloaop.spring_aop;
+package com.thinking.helloaop.spring_aop_3;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
