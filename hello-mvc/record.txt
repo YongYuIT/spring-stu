@@ -44,6 +44,8 @@ b、在控制器方法上使用@ResponseBody注解，这样也可以达到相同
 关于验证器，简单的可以用JSR-303注解验证。主要包括：@NotNull，@Future，@DateTimeFormat...
 复杂的可自定义验证器，例见com.thinking.hellomvc.MyValidator。实现并启用一个验证器分两步：实现Validator接口，使用@InitBinder注解，使用@Valid註解
 
+6\ 关于@Controller、@Service、@Repository的作用，详见https://www.cnblogs.com/yichunguo/p/12098029.html
+
 
 
 
