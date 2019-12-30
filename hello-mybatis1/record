@@ -1,0 +1,80 @@
+本项目实验原始的纯粹的mybatis的用法（不借助mybites-generator）
+
+step1: 利用Spring Initializr创建项目，在new proj--> dependencies页选择SQL-->Mybatis 和 PostgreSQL
+
+step2: 创建测试Schema和测试表
+
+--学生及捐书信息
+
+create schema f_test_yong;
+grant all on schema f_test_yong to yuyong;
+
+create table f_test_yong.f_stu_info(
+    f_stu_name varchar(255) not null,
+    f_stu_age int4,
+    primary key(f_stu_name)
+);
+grant all on f_test_yong.f_stu_info to yuyong;
+
+create table f_test_yong.f_book_info(
+    f_book_name varchar(255)  not null,
+    f_stu_name varchar(255),
+    primary key(f_book_name)
+);
+grant all on f_test_yong.f_book_info to yuyong;
+
+insert into f_test_yong.f_stu_info(f_stu_name,f_stu_age) values
+('aaa',21),
+('bbb',22),
+('ccc',21),
+('ddd',22),
+('eee',21),
+('fff',22),
+('ggg',21),
+('hhh',22);
+
+insert into f_test_yong.f_book_info(f_book_name,f_stu_name) values
+('11111111','aaa'),
+('3333333333','aaa'),
+('6666666666','aaa'),
+('333333333333333','bbb'),
+('2222222222','bbb');
+
+
+step3: 创建mybatis关键3元素
+
+1\ Model 就是Java实体对象
+2\ Mapper接口 就是数据库操作接口
+3\ XML Bean 就是用于实现Mapper接口的java bean，但是这个java bean并不是通过写java代码来实现的，而是通过spring XML bean是方式来实现的
+
+这里详细介绍下如何写mapper xml
+
+1\ 在resources下创建文件夹mapper，然后在里面创建StuBookInfoMapper.xml
+2\ 头部照抄hello-mybatis/src/main/resources/com/thinking/hellomybatis/mapper
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+3\ 定义mapper信息，这个信息将决定生成的java bean规格（即实现的是哪个接口）
+<mapper namespace="com.thinking.hellomybatis1.mapper.StuBookInfoMapper">
+</mapper>
+4\ 定义返回值类型（即查询结果集映射java类的规则），这里可以并列定义好几个，用id区分
+    <resultMap id="StuBookinfoMap" type="com.thinking.hellomybatis1.model.StuBookInfo">
+    </resultMap>
+这样查询的结果就会按照定义的规则（StuBookinfoMap）映射成java对象（StuBookInfo）
+5\ 实现接口方法
+<select id="listAll" resultMap="StuBookinfoMap">
+</select>
+6\ 配置mybaits，使Spring IOC能找到这些mapper xml
+其实，mybaits有默认规则去找到这些mapper xml文件，例如本例中的StuBookInfoMapper.xml
+其namespace="com.thinking.hellomybatis1.mapper.StuBookInfoMapper"，即实现的接口为com.thinking.hellomybatis1.mapper.StuBookInfoMapper
+在装配这个接口的时候，默认扫描路径（寻找xml bean的路径）是：resources/com/thinking/hellomybatis1/mapper/StuBookInfoMapper.xml
+实际上，hello-mybatis示例项目就是这种默认规则
+另外可以用配置mybaits的方式自定义搜索路径
+在resources下新建application.yml，添加配置
+mybatis:
+  mapper-locations: classpath:mapper/**/*xml
+7\ 配置扫描，使spring ioc装配mapper（接口和xml bean）
+在Application类（这个类实质上就是IOC的config类）上添加@MapperScan("com.thinking.hellomybatis1.mapper")注解
+
+8\ 配置数据源，编写测试controller
+
+
