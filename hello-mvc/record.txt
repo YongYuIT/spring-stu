@@ -22,7 +22,7 @@ PO：Persistent Obj，持久化对象，通常与数据库表结构一一对应
 
 如果仅需要开发API类型的web应用，通常不需要View层，直接从Controller返回结果就行。此时有两个选项：
 
-a、在控制器类上使用@RestController注解，这样控制器返回结果会直接转为Json格式向浏览器返回
+a、在控制器类上使用@RestController注解，这样控制器返回结果会直接转为Json格式向浏览器返回。@RestController的效果相当于同时使用@Controller和@ResponseBody
 或者
 b、在控制器方法上使用@ResponseBody注解，这样也可以达到相同效果
 
