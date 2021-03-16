@@ -1,0 +1,2 @@
+myjob:
+  do_scheduled2: 0/6 * * * * ?
