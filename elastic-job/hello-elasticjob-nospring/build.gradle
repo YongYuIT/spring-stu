@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application' // add gradle Application Plugin
 }
 
 group 'com.thinking'
@@ -8,9 +9,14 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.apache.shardingsphere.elasticjob/elasticjob-lite-core
+    implementation group: 'org.apache.shardingsphere.elasticjob', name: 'elasticjob-lite-core', version: '3.0.0-RC1'
 }
+
+mainClassName = "com.thinking.hello_elasticjob_nospring.Main" // config with gradle Application Plugin

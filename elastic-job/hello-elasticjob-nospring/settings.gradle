@@ -1,2 +1,2 @@
-rootProject.name = 'hello-elasticjob-nospring'
+rootProject.name = 'hello-elasticjob-nospring' //ensure this item exists when using gradle Application Plugin
 
