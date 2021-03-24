@@ -13,3 +13,5 @@ java -jar build/libs/hello-elasticjob-0.0.1-SNAPSHOT.jar
 java -jar build/libs/hello-elasticjob-0.0.1-SNAPSHOT.jar
 
 java -jar build/libs/hello-elasticjob-0.0.1-SNAPSHOT.jar
+
+开启三个进程，可以看到这三个进程会自行分配任务
