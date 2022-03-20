@@ -55,8 +55,59 @@ server:
 
 # create Springboot client proj(using feign)
 
+## gradle dep
 
+~~~groovy
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.7.RELEASE'
+    implementation group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: '2.2.7.RELEASE'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.7.RELEASE'
+~~~
 
+***version of spring-boot-starter-web and spring-cloud-starter-alibaba-nacos-discovery and spring-cloud-starter-openfeign should be the same***
+
+## application.yml
+
+~~~yaml
+spring:
+  application:
+    name: test-hello-cli
+
+nacos:
+  discovery:
+    server-addr: 127.0.0.1:8848
+    auto-register: true
+
+server:
+  port: 8081
+~~~
+
+## mark on main class
+
+~~~java
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class Application
+~~~
+
+## create an interface marked by @FeignClient
+
+~~~java
+@FeignClient("test-hello-svc")
+public interface HelloInterface {
+    @RequestMapping(method = RequestMethod.GET, value = "/yong-test/hello-api/sayhello/yong")
+    String sayHello();
+}
+~~~
+
+and call this interface obj
+
+~~~java
+@Autowired
+HelloInterface helloInterface;
+... ...
+helloInterface.sayHello();
+~~~
 
 
 
