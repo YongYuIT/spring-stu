@@ -1,5 +1,5 @@
 1\ 如何使用mybites-generator
-step1:利用Spring Initializr创建项目，在new proj--> dependencies页选择SQL-->Mybatis
+step1:利用Spring Initializr(https://start.spring.io/不通的话，用国内的https://start.aliyun.com/)创建项目，在new proj--> dependencies页选择SQL-->Mybatis
 
 由于mybatis-generator没有IDEA插件，但是有Maven插件所以，
 step2:向pom.xml文件中添加mybatis-generator Maven插件
