@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'yong'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.0.3.RELEASE'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    implementation group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.10'
+    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.0.1'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+}

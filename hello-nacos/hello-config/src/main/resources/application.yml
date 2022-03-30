@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: hello-config-svc
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://${dbconfig.ip}:${dbconfig.port}/hellotest?serverTimezone=UTC
+    username: ${dbconfig.username}
+    password: ${dbconfig.password}
+
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+    namespace: 212e0a85-25b0-4071-8388-ba1805445170
+
+server:
+  port: 8080
+
