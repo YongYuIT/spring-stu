@@ -14,7 +14,8 @@ public class MultipleRateLimterKeyResolver implements KeyResolver {
         ServerHttpRequest request = exchange.getRequest();
         String name = request.getQueryParams().get("name").get(0);
         String gen = request.getQueryParams().get("gen").get(0);
-        System.out.println("name-->" + name + ", gen-->" + gen);
-        return Mono.just(name + "##" + gen);
+        String con = request.getQueryParams().get("con").get(0);
+        System.out.println("name-->" + name + ", gen-->" + gen + ", con-->" + con);
+        return Mono.just(name + "##" + gen + "##" + con);
     }
 }
