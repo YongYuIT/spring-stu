@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: test-hello-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: path_test
+          predicates:
+            - Path=/gateway_path_test/**
+          filters:
+            - StripPrefix=1
+          #uri: http://0.0.0.0:8080
+          uri: lb://test-hello-svc
+          # eg. http://0.0.0.0:8000/gateway_path_test/yong-test-hello/hello-api/hello --> http://0.0.0.0:8080/yong-test-hello/hello-api/hello
+          # eg. http://0.0.0.0:8000/gateway_path_test/yong-test-hello/hello-api/sayhello/yong --> http://0.0.0.0:8080/yong-test-hello/hello-api/sayhello/yong
+
+server:
+  port: 8000
+
+nacos:
+  discovery:
+    server-addr: 127.0.0.1:8848
+    auto-register: true
