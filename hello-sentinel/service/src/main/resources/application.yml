@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: test-hello-svc
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        port: 8719
+
+
+server:
+  port: 8888
+  servlet:
+    context-path: /yong-test-hello/
