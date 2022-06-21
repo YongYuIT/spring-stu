@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: degreade
+  cloud:
+    gateway:
+      routes:
+        - id: degreade
+          predicates:
+            - Path=/degreade/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: degreadeCircuitBreaker
+                fallbackUri: forward:/fallback
+            - Mock
+          uri: http://error
+        - id: fallback
+          predicates:
+            - Path=/fallback/**
+          filters:
+            - name: Fallback
+          uri: http://error
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud: debug
+
+server:
+  port: 8000

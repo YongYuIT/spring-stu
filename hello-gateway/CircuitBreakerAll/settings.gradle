@@ -1,0 +1,5 @@
+rootProject.name = 'CircuitBreakerAll'
+
+include 'CircuitBreaker'
+include 'Mock'
+

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: mock
+  cloud:
+    gateway:
+      routes:
+        - id: mock
+          predicates:
+            - Path=/mock/**
+            - name: ReadBody
+              args:
+                inClass: "java.lang.String"
+                predicate: "#{@redPostDataPredicate}"
+          filters:
+            - StripPrefix=1
+            - Mock
+          uri: http://error
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: debug
+
+server:
+  port: 8001
