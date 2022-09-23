@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: DiffRateLimit
+  redis:
+    host: 0.0.0.0
+    port: 16379
+    password: Aa12345!
+  cloud:
+    gateway:
+      routes:
+        - id: baidu-path-test
+          predicates:
+            - Path=/diff-gateway/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                denyEmptyKey: true
+                emptyKeyStatus: BAD_REQUEST
+                keyResolver: '#{@thinkingRateLimterKeyResolver}'
+                reteLimier: '#{@thinkingRateLimter}'
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+            - name: Message
+          uri: http://www.baidu.com
+
+server:
+  port: 8080
